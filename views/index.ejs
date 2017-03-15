@@ -1,16 +1,4 @@
 <!-- 在渲染模板时我们传入了一个变量 title 值为 express 字符串，模板引擎会将所有 <%= title %> 替换为 express ，然后将渲染后生成的html显示到浏览器中 -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <%- include a %><br>
-	a和b之间<br>
-    <%- include b %><br>
-    <p>我要用 <%= title %>做个blog</p>
-  </body>
-</html>
+<%- include header %>  
+这是主页  
+<%- include footer %> 

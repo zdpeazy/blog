@@ -6,15 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routers = require('./routes/index');
-var settings = require('./settings');
+var flash = require('connect-flash');
 /*var users = require('./routes/users');*/
+var session = require('express-session');  
+/*var MongoStore = require('connect-mongo')(session);  */
+ var mongoose = require('mongoose');
+
+ mongoose.connect('mongodb://localhost/blog') //连接本地数据库 
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//设置views为放置模板引擎的地方
 app.set('view engine', 'ejs');//设置view的模板引擎为ejs文件
-
+app.use(flash());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));//加载日志中间件
@@ -27,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));//设置pulic为放置�
 app.use('/users', users);//路由控制器--把他拿到index.js里面*/
 //修改后的路由的写法，将路由的组件全都放到index.js里面
 routers(app);
-
 
 // catch 404 and forward to error handler捕获404错误，并转发到错误处理器
 app.use(function(req, res, next) {

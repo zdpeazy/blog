@@ -17,7 +17,6 @@ module.exports = function(app){
 		res.render('leg',{ title: '注册'});
 	});
 	app.post('/leg', function(req, res) {
-
 	});
 	app.post('/login', function(req, res) {
 		res.render('login',{ title: '登陆'});
