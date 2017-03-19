@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+//用body-parser处理post提交过来的数据
 var bodyParser = require('body-parser');
 
 var routers = require('./routes/index');
@@ -11,8 +12,6 @@ var flash = require('connect-flash');
 var session = require('express-session');  
 /*var MongoStore = require('connect-mongo')(session);  */
  var mongoose = require('mongoose');
-
- mongoose.connect('mongodb://localhost/blog') //连接本地数据库 
 
 var app = express();
 
@@ -24,7 +23,7 @@ app.use(flash());
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));//加载日志中间件
 app.use(bodyParser.json());//加载解析json的中间件
-app.use(bodyParser.urlencoded({ extended: false }));//加载解析urlencoded的中间件
+app.use(bodyParser.urlencoded({ extended: true }));//加载解析urlencoded的中间件
 app.use(cookieParser());//加载解析cookie的中间件
 app.use(express.static(path.join(__dirname, 'public')));//设置pulic为放置静态文件的目录
 
@@ -32,6 +31,14 @@ app.use(express.static(path.join(__dirname, 'public')));//设置pulic为放置�
 app.use('/users', users);//路由控制器--把他拿到index.js里面*/
 //修改后的路由的写法，将路由的组件全都放到index.js里面
 routers(app);
+
+mongoose.connect('mongodb://127.0.0.1:27017/blog',function(err){
+  if(err){
+    console.log('链接数据库失败');
+  }else{
+    console.log('链接数据库成功');
+  }
+ }) //连接本地数据库 
 
 // catch 404 and forward to error handler捕获404错误，并转发到错误处理器
 app.use(function(req, res, next) {
