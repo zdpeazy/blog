@@ -1,7 +1,20 @@
 $(function(){
-	var $registerBox = $('#registerBox');
+	var $registerBox = $('.registerBox');
+	var $loginBox = $('.loginBox');
 
-	$registerBox.find('#btn').on('click',function() {
+	$loginBox.find('.regsisterLink').on('click',function(){
+		$('.tip').html('');
+		var _this = $(this);
+		_this.parents('.loginBox').addClass('hide').siblings('.registerBox').removeClass('hide').find('input').val('');
+	})
+	$registerBox.find('.loginLink').on('click',function(){
+		$('.tip').html('');
+		var _this = $(this);
+		_this.parents('.registerBox').addClass('hide').siblings('.loginBox').removeClass('hide').find('input').val('');
+	})
+	//验证注册
+	$registerBox.find('.btn').on('click',function() {
+		var _this = $(this);
 		$.ajax({
 			url: '/reg',
 			type: 'post',
@@ -12,15 +25,36 @@ $(function(){
 			},
 			dataType: 'json',
 			success: function(result) {
-				console.log(result);
-				$registerBox.find('#tip').html(result.message);
+				$registerBox.find('.tip').html(result.message);
 				if(!result.code){
 					setTimeout(function(){
-						window.location.href="/login";
+						_this.parents('.registerBox').addClass('hide').siblings('.loginBox').removeClass('hide');
 					},1000);
 				}
 			}
 		})
 	})
+	//验证登录
+	$loginBox.find('.btn').on('click',function() {
+		var _this = $(this);
+		$.ajax({
+			url: '/login',
+			type: 'post',
+			data: {
+				username: $loginBox.find('[name="username"]').val(),
+				password: $loginBox.find('[name="password"]').val(),
+			},
+			dataType: 'json',
+			success: function(result) {
+				$loginBox.find('.tip').html(result.message);
+				if(!result.code){
+					setTimeout(function(){
+						alert('登录成功');
+					},1000);
+				}
+			}
+		})
+	})
+
 	
 })

@@ -22,8 +22,6 @@ module.exports = function(app){
 		var username = req.body.username;
 		var password = req.body.password;
 		var repassword = req.body.repassword;
-		console.log(password);
-		console.log(repassword);
 		// 用户名是否为空
 		if(username == '') {
 			responseData.code = 1;
@@ -49,7 +47,6 @@ module.exports = function(app){
 		User.findOne({
 			username: username
 		}).then(function(userInfo) {
-			console.log(userInfo);
 			if(userInfo) {
 				//表示数据库有该用户
 				responseData.code = 4;
@@ -75,7 +72,33 @@ module.exports = function(app){
 		res.render('login',{ title: '登陆'});
 	});
 	app.post('/login', function(req, res) {
-
+		//注册的逻辑
+		var username = req.body.username;
+		var password = req.body.password;
+		var repassword = req.body.repassword;
+		// 用户名是否为空
+		if(username == '' || password == '') {
+			responseData.code = 1;
+			responseData.message = '用户名或密码不能为空';
+			res.json(responseData);
+			return;
+		}
+		//数据库用户名是否存在
+		User.findOne({
+			username:username,
+			password:password,
+		}).then(function(userInfo){
+			if(!userInfo){
+				responseData.code = 2;
+				responseData.message = '用户名或密码错误';
+				res.json(responseData);
+				return;
+			}
+			//用户名正确
+			responseData.message = '登录成功';
+			res.json(responseData);
+			return;
+		})
 	});
 	app.get('/post', function(req, res) {
 		res.render('post',{ title: '发表'});
