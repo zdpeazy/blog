@@ -1,16 +1,28 @@
 $(function(){
-	var $registerBox = $('.registerBox');
-	var $loginBox = $('.loginBox');
+	var $registerBox = $('.registerBox'),
+	    $loginBox = $('.loginBox'),
+	    $changePasswordBox = $('.changePasswordBox'),
+	    $regsisterLink = $('.regsisterLink'),
+	    $loginLink = $('.loginLink'),
+	    $forpasswordLink = $('.forpasswordLink');
 
-	$loginBox.find('.regsisterLink').on('click',function(){
+	$regsisterLink.on('click',function(){
 		$('.tip').html('');
 		var _this = $(this);
-		_this.parents('.loginBox').addClass('hide').siblings('.registerBox').removeClass('hide').find('input').val('');
+		_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
+		_this.parents('.formBox').siblings('.registerBox').removeClass('hide').find('input').val('');
 	})
-	$registerBox.find('.loginLink').on('click',function(){
+	$loginLink.on('click',function(){
 		$('.tip').html('');
 		var _this = $(this);
-		_this.parents('.registerBox').addClass('hide').siblings('.loginBox').removeClass('hide').find('input').val('');
+		_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
+		_this.parents('.formBox').siblings('.loginBox').removeClass('hide').find('input').val('');
+	})
+	$forpasswordLink.on('click',function(){
+		$('.tip').html('');
+		var _this = $(this);
+		_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
+		_this.parents('.formBox').siblings('.changePasswordBox').removeClass('hide').find('input').val('');
 	})
 	//验证注册
 	$registerBox.find('.btn').on('click',function() {
@@ -28,7 +40,8 @@ $(function(){
 				$registerBox.find('.tip').html(result.message);
 				if(!result.code){
 					setTimeout(function(){
-						_this.parents('.registerBox').addClass('hide').siblings('.loginBox').removeClass('hide');
+						_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
+						_this.parents('.formBox').siblings('.registerBox').removeClass('hide').find('input').val('');
 					},1000);
 				}
 			}
@@ -55,6 +68,30 @@ $(function(){
 			}
 		})
 	})
-
+	//修改密码
+	$changePasswordBox.find('.btn').on('click', function() {
+		console.log(0);
+		var _this = $(this);
+		$.ajax({
+			url: '/changePassword',
+			type: 'post',
+			data: {
+				username: $changePasswordBox.find('[name="username"]').val(),
+				password: $changePasswordBox.find('[name="password"]').val(),
+				newpassword: $changePasswordBox.find('[name="newpassword"]').val(),
+			},
+			dataType: 'json',
+			success: function(result){
+				console.log(1);
+				$changePasswordBox.find('.tip').html(result.message);
+				if(!result.code){
+					setTimeout(function(){
+						_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
+						_this.parents('.formBox').siblings('.loginBox').removeClass('hide').find('input').val('');
+					},1000);
+				}
+			}
+		})
+	})
 	
 })

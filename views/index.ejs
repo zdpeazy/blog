@@ -17,9 +17,6 @@
                             <a class="nav-link" href="#0" data-no="3">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#0" data-no="4">Video</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#0" data-no="5">Contact</a>
                         </li>
                     </ul>
@@ -33,7 +30,7 @@
                     <div class="container-fluid js-tm-page-content tm-page-1" data-page-no="1">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col loginBox">
+                                <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col formBox loginBox">
                                 	<h2 class="tm-site-name">登录</h2>
                                 	<div class="input-group">
 									  <span class="input-group-addon" id="basic-addon1">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
@@ -52,7 +49,7 @@
 										<a class="regsisterLink" href="javascript:;">注册账号</a>
 									</div>
                                 </div>
-                                <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col registerBox hide">
+                                <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col formBox registerBox hide">
                                 	<h2 class="tm-site-name">注册</h2>
                                 	<div class="input-group">
 									  <span class="input-group-addon" id="basic-addon1">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
@@ -71,9 +68,31 @@
 									</div>
 									<div class="tip"></div>
 									<div class="togTxt">
-										<a href="javascript:;">忘记密码</a> 
+										<a class="forpasswordLink" href="javascript:;">忘记密码</a> 
 										<a class="loginLink" href="javascript:;">登录账号</a>
 									</div>
+                                </div>
+                                <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-1-col formBox changePasswordBox hide">
+                                    <h2 class="tm-site-name">修改密码</h2>
+                                    <div class="input-group">
+                                      <span class="input-group-addon" id="basic-addon1">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
+                                      <input type="text" class="form-control" name="username" placeholder="请输入用户名">
+                                    </div>
+                                    <div class="input-group">
+                                      <span class="input-group-addon" id="basic-addon1">原始密码：</span>
+                                      <input type="password" class="form-control" name="password" placeholder="请输入密码" >
+                                    </div>
+                                    <div class="input-group">
+                                      <span class="input-group-addon" id="basic-addon1">修改密码：</span>
+                                      <input type="password" class="form-control" name="newpassword" placeholder="请再次输入密码" >
+                                    </div>
+                                    <div class="btn-group">
+                                      <button class="btn btn-primary" type="button">确定</button>
+                                    </div>
+                                    <div class="tip"></div>
+                                    <div class="togTxt">
+                                        <a class="loginLink" href="javascript:;">登录账号</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -156,15 +175,6 @@
                                                 
                 </div>
                 
-            </li>
-            <!-- Page 4 -->
-            <li>
-                <div class="js-tm-page-content" data-page-no="4">
-                    <div class="cd-bg-video-wrapper" data-video="video/sunset-loop">
-                        <!-- video element will be loaded using jQuery -->
-                    </div> <!-- .cd-bg-video-wrapper -->
-                </div>                    
-
             </li>
             <!-- Page 5 -->
             <li>

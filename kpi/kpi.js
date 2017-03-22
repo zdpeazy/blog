@@ -1,6 +1,4 @@
-/*生成一个路由实例用来捕获访问主页的GET请求，导出这个路由并在app.js中通过app.use('/', routes); 加载。
-这样，当访问主页时，就会调用res.render('index', { title: 'Express' });渲染views/index.ejs模版并显示到浏览器中。*/
-//修改的写法
+/*kpi*/
 var User = require('../models/User.js');
 module.exports = function(app){
 	var responseData;
@@ -11,12 +9,6 @@ module.exports = function(app){
 	  };
 	  next();
 	})
-	app.get('/', function(req, res, next) {
-		res.render('index',{ title: '首页'});
-	});
-	app.get('/reg', function(req, res) {
-		res.render('reg',{ title: '注册'});
-	});
 	app.post('/reg', function(req, res) {
 		//注册的逻辑
 		var username = req.body.username;
@@ -68,11 +60,8 @@ module.exports = function(app){
 		
 
 	});
-	app.get('/login', function(req, res) {
-		res.render('login',{ title: '登陆'});
-	});
+	//注册账户的逻辑
 	app.post('/login', function(req, res) {
-		//注册的逻辑
 		var username = req.body.username;
 		var password = req.body.password;
 		var repassword = req.body.repassword;
@@ -100,12 +89,48 @@ module.exports = function(app){
 			return;
 		})
 	});
-	app.get('/post', function(req, res) {
-		res.render('post',{ title: '发表'});
+	//修改密码的逻辑
+	app.post('/changePassword', function(req, res) {
+		var username = req.body.username;
+		var password = req.body.password;
+		var newpassword = req.body.newpassword;
+		if(username == '' || password == '') {
+			console.log(111);
+			responseData.code = 1;
+			responseData.message = '用户名和原始密码不能为空';
+			res.json(responseData);
+			return;
+		};
+		if(newpassword == '') {
+			responseData.code = 2;
+			responseData.message = '新密码不能为空';
+			res.json(responseData);
+			return
+		}
+		//用户名正确
+		if(password == newpassword) {
+			responseData.code = 3;
+			responseData.message = '新密码不能与旧密码相同';
+			res.json(responseData);
+			return;
+		};
+		//数据库是否存在
+		User.findOne({
+			username:username,
+			password:password,
+		}).then(function(userInfo){
+			if(!userInfo){
+				responseData.code = 4;
+				responseData.message = '用户名或原密码错误';
+				res.json(responseData);
+				return;
+			}
+			var oldValue  = {name:"Nick"};
+			userInfo.update({password,newpassword})
+			responseData.message = '修改密码成功';
+			res.json(responseData);
+			return;
+		})
+		
 	});
-	app.post('/post', function(req, res) {
-
-	});
-	app.get('/logout', function (req, res) {
- 	});
 };
