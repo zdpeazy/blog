@@ -41,7 +41,7 @@ $(function(){
 				if(!result.code){
 					setTimeout(function(){
 						_this.parents('.formBox').addClass('hide').siblings().addClass('hide');
-						_this.parents('.formBox').siblings('.registerBox').removeClass('hide').find('input').val('');
+						_this.parents('.formBox').siblings('.loginBox').removeClass('hide').find('input').val('');
 					},1000);
 				}
 			}

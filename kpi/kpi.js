@@ -125,8 +125,7 @@ module.exports = function(app){
 				res.json(responseData);
 				return;
 			}
-			var oldValue  = {name:"Nick"};
-			userInfo.update({password,newpassword})
+			User.update({password,password},{password,newpassword})
 			responseData.message = '修改密码成功';
 			res.json(responseData);
 			return;
