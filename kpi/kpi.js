@@ -85,6 +85,15 @@ module.exports = function(app){
 			}
 			//用户名正确
 			responseData.message = '登录成功';
+			responseData.userInfo = {
+				_id: userInfo._id,
+				username: userInfo.username,
+			}
+			//登录成功后设置一个cookie来保存登录状态
+			res.cookie('userInfo',JSON.stringify({//注意用res来设置cookie
+				_id: userInfo._id,
+				username: userInfo.username,
+			}));
 			res.json(responseData);
 			return;
 		})
@@ -125,7 +134,15 @@ module.exports = function(app){
 				res.json(responseData);
 				return;
 			}
-			User.update({password,password},{password,newpassword})
+			var whereData = {username:username};
+ 			var updateDat = {$set: {password:newpassword}};
+			User.update(whereData,updateDat,function(error, result) {
+				if(error) {
+					console.log('error:'+error);
+				}else{
+					console.log(result);
+				}
+			})
 			responseData.message = '修改密码成功';
 			res.json(responseData);
 			return;

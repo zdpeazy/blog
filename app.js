@@ -9,6 +9,7 @@ var routers = require('./routes/route');//调用路由文件
 var flash = require('connect-flash');
 var session = require('express-session');  
 var mongoose = require('mongoose');//加载链接数据库的中间件
+var cookies = require('./cookies/cookies')//加载读取cookie的组件
 var app = express();
 app.set('views', path.join(__dirname, 'views'));//设置views为放置模板引擎的地方
 app.set('view engine', 'ejs');//设置view的模板引擎为ejs文件
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));//加载解析urlencoded的�
 app.use(cookieParser());//加载解析cookie的中间件
 app.use(express.static(path.join(__dirname, 'public')));//设置pulic为放置静态文件的目录
 kpi(app);//加载后台kpi接口
+cookies(app);//加载读取cookie的组件
 routers(app);//加载路由
 
 mongoose.connect('mongodb://127.0.0.1:27017/blog',function(err){//连接本地数据库 

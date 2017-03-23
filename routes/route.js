@@ -3,7 +3,9 @@
 //修改的写法
 module.exports = function(app){
 	app.get('/', function(req, res, next) {
-		res.render('index',{ title: '首页'});
+		res.render('index',{ 
+			userInfo: req.userInfo
+		});
 	});
 	app.get('/reg', function(req, res) {
 		res.render('reg',{ title: '注册'});

@@ -62,7 +62,7 @@ $(function(){
 				$loginBox.find('.tip').html(result.message);
 				if(!result.code){
 					setTimeout(function(){
-						alert('登录成功');
+						//alert('登录成功');
 					},1000);
 				}
 			}

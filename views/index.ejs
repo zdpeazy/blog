@@ -24,6 +24,11 @@
             </nav>
         </div> 
         <ul class="cd-hero-slider">  <!-- autoplay -->
+			<% if (userInfo._id) { %>
+	       		登录状态
+	        <% } else { %>
+	       		未登录状态
+	        <% } %>
         	<!-- Page 1 -->
             <li class="selected">
                 <div class="cd-full-width">
