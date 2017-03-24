@@ -1,0 +1,94 @@
+<div class="right" id="sidebar_wrapper">
+    <div id="sidebar">
+        <div class="box">
+            <div class="box_title">登录信息</div>
+            <% if(userInfo._id) {%>
+            <div class="formBox box_content loginInfo">
+                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
+                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
+                <div class="exit"><a href="#">退出</a></div>
+            </div>
+            <div class="formBox box_content loginBox hide">
+                <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
+                <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="text" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
+                <div><span class="tip"></span></div>
+                <div><button class="btn">登录</button></div>
+                <div><a class="forpasswordLink" href="javascript:;">忘记密码？</a>  |  <a class="regsisterLink" href="javascript:;"> 手机号注册</a></div>
+            </div>
+            <% }else{ %>
+            <div class="formBox box_content loginInfo hide">
+                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
+                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
+                <div class="exit"><a href="#">退出</a></div>
+            </div>
+            <div class="formBox box_content loginBox">
+                <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
+                <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="password" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
+                <div><span class="tip"></span></div>
+                <div><button class="btn">登录</button></div>
+                <div><a class="forpasswordLink" href="javascript:;">忘记密码？</a>  |  <a class="regsisterLink" href="javascript:;"> 手机号注册</a></div>
+            </div>
+            <% }%>
+            <div class="formBox box_content registerBox hide">
+                <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
+                <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="password" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
+                <div><label class="inp-head">再输一次</label><input type="password" name="repassword" placeholder="请再次输入您的密码" maxlength="20" /></div>
+                <div><span class="tip"></span></div>
+                <div><button class="btn">注册</button></div>
+                <div class="tr"><a class="loginLink" href="javascript:;">已有账号登录</a></div>
+            </div>
+            <div class="formBox box_content changePasswordBox hide">
+                <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" maxlength="11" /></div>
+                <div><label class="inp-head">原始密码</label><input type="password" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
+                <div><label class="inp-head">修改密码</label><input type="password" name="newpassword" placeholder="请输入您的新密码" maxlength="20" /></div>
+                <div><span class="tip"></span></div>
+                <div><button class="btn">修改密码</button></div>
+                <div class="tr pdr20"><a class="loginLink" href="javascript:;">已有账号登录</a></div>
+            </div>
+            <div class="formBox box_content loginInfoBox hide">
+                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
+                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
+                <div class="exit"><a href="javascript:;">退出</a></div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_title">精选分类</div>
+            <div class="box_content">
+                <ul>
+                    <li><a href="#">Website Templates</a></li>
+                    <li><a href="#">Wordpress Themes</a></li>
+                    <li><a href="#">Professional Templates</a></li>
+                    <li><a href="#">Blogger Templates</a></li>
+                    <li><a href="#">Joomla Templates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_title">其他资源</div>
+            <div class="box_content">
+                <ul>
+                    <li><a href="#">cssMoban.com Web Templates</a></li>
+                    <li><a href="#">Google</a> - Web Search</li>
+                    <li><a href="#">W3Schools</a> - Online Web Tutorials</li>
+                    <li><a href="#">WordPress</a> - Blog Platform</li>
+                    <li><a href="#">CakePHP</a> - PHP Framework</li>
+                </ul>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_title">博客相册</div>
+            <div class="box_content">
+                <div class="thumbnails">
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <a href="#" class="thumb"><img src="img/common/sample-thumbnail.jpg" width="64" height="64" alt="" /></a>
+                    <div class="clearer">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearer">&nbsp;</div>

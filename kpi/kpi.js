@@ -17,21 +17,21 @@ module.exports = function(app){
 		// 用户名是否为空
 		if(username == '') {
 			responseData.code = 1;
-			responseData.message = '用户名不能为空';
+			responseData.message = '*用户名不能为空';
 			res.json(responseData);
 			return;
 		}
 		// 密码不能为空
 		if(password == '') {
 			responseData.code = 2;
-			responseData.message = '密码不能为空';
+			responseData.message = '*密码不能为空';
 			res.json(responseData);
 			return;
 		}
 		//两次输入的密码必须一直
 		if(password != repassword) {
 			responseData.code = 3;
-			responseData.message = '两次的密码输入不一致';
+			responseData.message = '*两次的密码输入不一致';
 			res.json(responseData);
 			return;
 		}
@@ -42,7 +42,7 @@ module.exports = function(app){
 			if(userInfo) {
 				//表示数据库有该用户
 				responseData.code = 4;
-				responseData.message = '用户名已经被注册了';
+				responseData.message = '*用户名已经被注册了';
 				res.json(responseData);
 				return;
 			}
@@ -54,7 +54,7 @@ module.exports = function(app){
 			return user.save();
 
 		}).then(function(newUserInfo) {
-			responseData.message = '注册成功';
+			responseData.message = '*注册成功';
 			res.json(responseData);
 		})
 		
@@ -68,7 +68,7 @@ module.exports = function(app){
 		// 用户名是否为空
 		if(username == '' || password == '') {
 			responseData.code = 1;
-			responseData.message = '用户名或密码不能为空';
+			responseData.message = '*用户名或密码不能为空';
 			res.json(responseData);
 			return;
 		}
@@ -79,12 +79,12 @@ module.exports = function(app){
 		}).then(function(userInfo){
 			if(!userInfo){
 				responseData.code = 2;
-				responseData.message = '用户名或密码错误';
+				responseData.message = '*用户名或密码错误';
 				res.json(responseData);
 				return;
 			}
 			//用户名正确
-			responseData.message = '登录成功';
+			responseData.message = '*登录成功';
 			responseData.userInfo = {
 				_id: userInfo._id,
 				username: userInfo.username,
@@ -149,4 +149,12 @@ module.exports = function(app){
 		})
 		
 	});
+	//删除cookie
+	app.post('/removeCookie',function(req, res , next) {
+		var cookieKey = req.body.cookieKey;
+		res.clearCookie(cookieKey);
+		responseData.message = '退出账户成功';
+		res.json(responseData);
+		return;
+	})
 };
