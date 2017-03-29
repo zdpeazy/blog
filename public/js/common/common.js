@@ -63,10 +63,7 @@ $(function(){
 			success: function(result) {
 				$loginBox.find('.tip').html(result.message);
 				if(!result.code){
-					setTimeout(function(){
-						_this.parents('.formBox').addClass('hide').siblings('.formBox').addClass('hide');
-						_this.parents('.formBox').siblings('.loginInfoBox').removeClass('hide');
-					},1000);
+					window.location.reload();
 				}
 			}
 		})
