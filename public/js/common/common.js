@@ -103,9 +103,7 @@ $(function(){
 			},
 			dataType: 'json',
 			success: function(result) {
-				$('.tip').html('');
-				_this.parents('.formBox').addClass('hide').siblings('.formBox').addClass('hide');
-				_this.parents('.formBox').siblings('.loginBox').removeClass('hide').find('input').val('');
+				window.location.reload();
 			}
 		})
 		

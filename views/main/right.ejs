@@ -5,22 +5,15 @@
             <% if(userInfo._id) {%>
             <div class="formBox box_content loginInfo">
                 <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
-                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
+                 <% if(userInfo.isAdmin) {%>
+                 <div class="blog-name"><span class="red">哇~管理员：</span><a href="#"><%- userInfo.username %></a><a href="/admin">进入管理后台</a></div>
+                 <% }else{ %>
+                 <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
+                 <% }%>
+                
                 <div class="exit"><a href="#">退出</a></div>
-            </div>
-            <div class="formBox box_content loginBox hide">
-                <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
-                <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="text" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
-                <div><span class="tip"></span></div>
-                <div><button class="btn">登录</button></div>
-                <div><a class="forpasswordLink" href="javascript:;">忘记密码？</a>  |  <a class="regsisterLink" href="javascript:;"> 手机号注册</a></div>
             </div>
             <% }else{ %>
-            <div class="formBox box_content loginInfo hide">
-                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
-                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
-                <div class="exit"><a href="#">退出</a></div>
-            </div>
             <div class="formBox box_content loginBox">
                 <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
                 <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="password" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
@@ -28,7 +21,6 @@
                 <div><button class="btn">登录</button></div>
                 <div><a class="forpasswordLink" href="javascript:;">忘记密码？</a>  |  <a class="regsisterLink" href="javascript:;"> 手机号注册</a></div>
             </div>
-            <% }%>
             <div class="formBox box_content registerBox hide">
                 <div><label class="inp-head">账&nbsp;&nbsp;号</label><input type="phone" name="username" placeholder="请输入您的手机号" /></div>
                 <div><label class="inp-head">密&nbsp;&nbsp;码</label><input type="password" name="password" placeholder="请输入您的密码" maxlength="20" /></div>
@@ -45,11 +37,7 @@
                 <div><button class="btn">修改密码</button></div>
                 <div class="tr pdr20"><a class="loginLink" href="javascript:;">已有账号登录</a></div>
             </div>
-            <div class="formBox box_content loginInfoBox hide">
-                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
-                <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
-                <div class="exit"><a href="javascript:;">退出</a></div>
-            </div>
+            <% }%>
         </div>
         <div class="box">
             <div class="box_title">精选分类</div>
