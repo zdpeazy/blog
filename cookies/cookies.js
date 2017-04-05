@@ -8,15 +8,22 @@ module.exports = function(app){
 	  	req.userInfo = {};
 	  	//console.log(JSON.parse(req.cookies.userInfo)._id);
 	  	if(req.cookies.userInfo){
-	  		req.userInfo = JSON.parse(req.cookies.userInfo);
-  			//获取当前登录用户的类型是否是管理员
-  			User.findOne({
-  				_id:JSON.parse(req.cookies.userInfo)._id,
-  			}).then(function(userInfo){
-  				req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
-  				next();
-  			});
+	  		//console.log(req.userInfo);
+	  		try {
+				req.userInfo = JSON.parse(req.cookies.userInfo);
+	  			//获取当前登录用户的类型是否是管理员
+	  			User.findOne({
+	  				_id:JSON.parse(req.cookies.userInfo)._id,
+	  			}).then(function(userInfo){
+	  				req.userInfo.isAdmin = Boolean(userInfo.isAdmin);	
+	  				next();
+	  			});
+	  		}catch(e){
+	  			next();
+	  		}
+  			
+	  	}else{
+	  		next();
 	  	}
-	  	next();
 	});
 };

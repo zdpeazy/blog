@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');//用body-parser处理post提交过来的数据
 var kpi = require('./kpi/kpi');//调用kpi接口文件
-var routers = require('./routes/route');//调用路由文件
+var routers = require('./routes/route');//调用前台页面路由文件
+var mainRouters = require('./routes/backend');//调用前台页面路由文件
 var flash = require('connect-flash');
 var session = require('express-session');  
 var mongoose = require('mongoose');//加载链接数据库的中间件
@@ -21,7 +22,8 @@ app.use(cookieParser());//加载解析cookie的中间件
 app.use(express.static(path.join(__dirname, 'public')));//设置pulic为放置静态文件的目录
 kpi(app);//加载后台kpi接口
 cookies(app);//加载读取cookie的组件
-routers(app);//加载路由
+routers(app);//加载前台页面路由
+mainRouters(app);//加载后台页面路由
 
 mongoose.connect('mongodb://127.0.0.1:27017/blog',function(err){//连接本地数据库 
   if(err){
