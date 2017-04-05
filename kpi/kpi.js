@@ -60,7 +60,7 @@ module.exports = function(app){
 		
 
 	});
-	//注册账户的逻辑
+	//登录账户的逻辑
 	app.post('/login', function(req, res) {
 		var username = req.body.username;
 		var password = req.body.password;

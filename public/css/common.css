@@ -75,7 +75,11 @@ input{
 .right .blog-name{
 	font-size: 12px;
 	padding:10px 0;
+	position: relative;
 }
 .right a:hover{
 	color: blue;
+}
+.right .adminLink{
+	margin-bottom: 5px;
 }

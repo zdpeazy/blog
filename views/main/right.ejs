@@ -4,9 +4,10 @@
             <div class="box_title">登录信息</div>
             <% if(userInfo._id) {%>
             <div class="formBox box_content loginInfo">
-                <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
+                 <div class="headwrap"><img src="img/common/headerImg.jpg"/></div>
                  <% if(userInfo.isAdmin) {%>
-                 <div class="blog-name"><span class="red">哇~管理员：</span><a href="#"><%- userInfo.username %></a><a href="/admin">进入管理后台</a></div>
+                 <div class="blog-name"><span class="red">哇~管理员：</span><a href="#"><%- userInfo.username %></a></div>
+                 <div class="adminLink"><a href="/admin">后台管理</a></div>
                  <% }else{ %>
                  <div class="blog-name"><span class="red">哇~欢迎：</span><a href="#"><%- userInfo.username %></a></div>
                  <% }%>

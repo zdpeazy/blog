@@ -4,25 +4,18 @@
 var User = require('../models/User');
 module.exports = function(app){
 	app.use(function(req, res, next) {
-		// Cookies that have not been signed
-	  	/*console.log('Cookies: ', req.cookies.userInfo);*/
-	  	// Cookies that have been signed
-	  	/*console.log('Signed Cookies: ', req.signedCookies);*/
-
 	  	//取出登录用户userInfo的cookie信息，判断登录状态
 	  	req.userInfo = {};
+	  	//console.log(JSON.parse(req.cookies.userInfo)._id);
 	  	if(req.cookies.userInfo){
-	  		try{
-	  			req.userInfo = JSON.parse(req.cookies.userInfo);
-	  			//获取当前登录用户的类型是否是管理员
-	  			User.findOne({
-	  				id:req.cookies.userInfo._id,
-	  			}).then(function(userInfo) {
-	  				console.log(userInfo.isAdmin);
-	  			})
-	  		}catch(e){
-	  			next();
-	  		}
+	  		req.userInfo = JSON.parse(req.cookies.userInfo);
+  			//获取当前登录用户的类型是否是管理员
+  			User.findOne({
+  				_id:JSON.parse(req.cookies.userInfo)._id,
+  			}).then(function(userInfo){
+  				req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+  				next();
+  			});
 	  	}
 	  	next();
 	});
